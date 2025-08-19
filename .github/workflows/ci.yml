@@ -1,10 +1,9 @@
 name: CI/CD Workflow
 on: 
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
-
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -24,17 +23,17 @@ jobs:
       - name: Instalar dependencias
         run: npm install
 
-      - name: Lint del codigo
+      - name: Lint del código
         run: npm run lint
 
-      - name: Ejecutar pruebas
-        run: npm test
+      - name: Ejecutar pruebas con cobertura
+        run: npm test -- --coverage
+
+      - name: Publicar reporte de cobertura
+        uses: actions/upload-artifact@v3
+        with:
+          name: cobertura-jest
+          path: coverage/
 
       - name: Simular despliegue
-        run: echo "Despliegue simulado. la aplicacion paso pruebas y Lint correctamente."
-       
-
-        
-
-      
-    
+        run: echo "Despliegue simulado. La aplicación pasó pruebas y Lint correctamente."
