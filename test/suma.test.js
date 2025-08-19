@@ -3,7 +3,7 @@ const {
   toCelsius,
   toFahrenheit,
   movingAverage,
-} = require('../src/utils/conversions');
+} = require('../src/utils/sum');
 
 describe('Conversión de temperaturas', () => {
   test('32°F -> 0.0°C', () => {
